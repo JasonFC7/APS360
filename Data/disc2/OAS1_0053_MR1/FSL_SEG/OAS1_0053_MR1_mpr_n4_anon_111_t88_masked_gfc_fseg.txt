@@ -1,0 +1,147 @@
+
+FAST - FMRIB's Automated Segmentation Tool		Version 3.3
+
+Image: OAS1_0053_MR1_mpr_n4_anon_111_t88_masked_gfc.img
+
+T1-weighted image
+Imagesize : 176 x 208 x 176
+Pixelsize : 1 x 1 x 1
+
+Parameter estimation will be performed from slice 25 to 132
+Initial K-means segmentation...
+starting with 1 class -- mean: 895.225  stddev: 398.908
+splite node 0 total 2 classes
+mean/stddev/prior for each classes:	523.663 / 206.213 / 0.452711
+					1202.46 / 217.403 / 0.547289
+Total number of iterations so far: 7
+
+splite node 1 total 3 classes
+mean/stddev/prior for each classes:	410.531 / 141.984 / 0.309512
+					909.984 / 130.69 / 0.382995
+					1364.19 / 140.373 / 0.307494
+Total number of iterations so far: 18
+
+
+    Initial Parameter Estimates:
+	410.531	141.984
+	909.984	130.69
+	1364.19	140.373
+
+Main iteration, No. 0
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean Residual lowpass filter done!
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean inverse covariance lowpass filter done!
+    HMRF-EM(20)...........
+    estimated parameters:
+	405.741	157.618
+	919.124	140.609
+	1343.24	116.826
+
+Main iteration, No. 1
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean Residual lowpass filter done!
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean inverse covariance lowpass filter done!
+    HMRF-EM(20)...........
+    estimated parameters:
+	403.853	157.032
+	917.919	142.214
+	1335.7	107.634
+
+Main iteration, No. 2
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean Residual lowpass filter done!
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean inverse covariance lowpass filter done!
+    HMRF-EM(20)...........
+    estimated parameters:
+	401.467	155.753
+	913.063	142.438
+	1327.49	103.912
+
+Main iteration, No. 3
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean Residual lowpass filter done!
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean inverse covariance lowpass filter done!
+    HMRF-EM(20)...........
+    estimated parameters:
+	398.642	154.229
+	906.813	141.981
+	1318.7	102.411
+
+Main iteration, No. 4
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean Residual lowpass filter done!
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean inverse covariance lowpass filter done!
+    HMRF-EM(20)...........
+    estimated parameters:
+	395.506	152.556
+	899.817	141.314
+	1309.97	101.802
+
+Main iteration, No. 5
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean Residual lowpass filter done!
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean inverse covariance lowpass filter done!
+    HMRF-EM(20)...........
+    estimated parameters:
+	395.329	152.158
+	901.267	142.319
+	1302.48	94.5945
+
+Main iteration, No. 6
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean Residual lowpass filter done!
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean inverse covariance lowpass filter done!
+    HMRF-EM(20)...........
+    estimated parameters:
+	394.348	151.811
+	898.876	141.736
+	1295.22	92.9312
+
+Main iteration, No. 7
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean Residual lowpass filter done!
+    Lowpass Filtering (Z)(44)........................................
+    Lowpass Filtering (XY)(100)........................................
+    Mean inverse covariance lowpass filter done!
+    HMRF-EM(20)...........
+    estimated parameters:
+	392.629	151.041
+	894.702	140.893
+	1287.57	92.545
+
+
+The final statistics are:
+	Tissue 0:	392.629	151.041
+	Tissue 1:	894.702	140.893
+	Tissue 2:	1287.57	92.545
+
+Segmentation done successfully!
+
+Calculation time 342 seconds!
+
+Write segmentation image OAS1_0053_MR1_mpr_n4_anon_111_t88_masked_gfc_seg.img Successfully!
+
+Class:		CSF		tissue 1	tissue 2	brain percentage
+Volumes:	501544.2  	666075.2  	499632.6  	0.699179

@@ -1,0 +1,8 @@
+/home/iac3/nil-tools/imgreg_4dfp /home/iac3/nil-tools/refdir/young6+6_atrophy_avg_222 /home/iac3/nil-tools/refdir/young6+6_avg_222_mask0_g9z OAS1_0062_MR1_mpr-1_anon_g11 OAS1_0062_MR1_mpr-1_anon_mskz OAS1_0062_MR1_mpr-1_anon_to_711-2C_t4 2311 
+$Id: imgreg_4dfp.c,v 1.10 1999/02/03 08:16:33 avi Exp rsachs $
+t4
+ -0.018750 -0.889681  0.363073    3.0750
+  0.017052  0.359602  0.824955    3.4257
+ -0.959806  0.007437  0.000914    1.0602
+  0.000000  0.000000  0.000000    1.0000
+scale:      0.896268
