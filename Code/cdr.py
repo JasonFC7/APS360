@@ -34,7 +34,3 @@ def read_cdr_folders(main_folder):
                         cdr_list.update({name[5:9]: cdr_val})
                         
     return cdr_list
-    
-    
-#print(read_cdr('OAS1_0001_MR1.txt'))
-#print(read_cdr('OAS1_0029_MR1.txt'))
