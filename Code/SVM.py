@@ -2,7 +2,7 @@ from ImageSort import sortbycdr
 
 import os
 import numpy as np
-from sklearn.svm import SVC
+from sklearn.svm import SVC, LinearSVC
 from sklearn.metrics import classification_report, confusion_matrix, precision_score
 from sklearn.inspection import DecisionBoundaryDisplay
 from sklearn.model_selection import train_test_split
@@ -30,7 +30,7 @@ def load_images(folder):
                 print(f"Failed to process image {img_path}: {e}")
     return np.array(images), np.array(labels)
 
-folder_path = 'Temp Processed Data'
+folder_path = 'Processed Images'
 data, label = load_images(folder_path)
 
 # Encodes labels if string
@@ -45,6 +45,8 @@ d_test = scaler.fit_transform(d_test)
 
 print("Class distribution in training data:", np.bincount(l_train))
 print("Class distribution in testing data:", np.bincount(l_test))
+
+C = 1.0
 
 # Testing SVC with linear kernel
 svm1 = SVC(kernel = 'linear', C=C)
