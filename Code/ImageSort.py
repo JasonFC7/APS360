@@ -14,18 +14,18 @@ def sortbycdr():
     for key in selected_img:
         if selected_img.get(key)[0] == '0':
             source = os.path.join(selected_img.get(key)[1], key)
-            if key not in 'cdr1':  
-                shutil.move(source, 'cdr1')
+            if key not in 'Processed Data\cdr1':
+                shutil.move(source, 'Processed Data\cdr1')
                 num_1 +=1
         elif selected_img.get(key)[0] == '0.5':
             source = os.path.join(selected_img.get(key)[1], key)
-            if key not in 'cdr2':  
-                shutil.move(source, 'cdr2')
+            if key not in 'Processed Data\cdr2':
+                shutil.move(source, 'Processed Data\cdr2')
                 num_2 +=1
         elif selected_img.get(key)[0] == '1':
             source = os.path.join(selected_img.get(key)[1], key)
-            if key not in 'cdr3':  
-                shutil.move(source, 'cdr3')
+            if key not in 'Processed Data\cdr3':
+                shutil.move(source, 'Processed Data\cdr3')
                 num_3 +=1
     num.append(num_1)
     num.append(num_2)
