@@ -9,11 +9,12 @@ def read_img_folders(main_folder):
         for disc_folder in os.listdir(main_folder):
             disc_folder_path = os.path.join(main_folder, disc_folder)
             for patient_folder in os.listdir(disc_folder_path):
-                if patient_folder.endswith(key + "_MR1"):
+                if patient_folder.endswith(key + "_MR1") or patient_folder.endswith(key + "_MR2"):
                     patient_folder_path = os.path.join(disc_folder_path, patient_folder)
                     img_folder_path = patient_folder_path + "\PROCESSED\MPRAGE\T88_111"
                     for image in os.listdir(img_folder_path):
-                        if image.endswith("MR1_mpr_n4_anon_111_t88_masked_gfc_tra_90.gif") or image.endswith("MR1_mpr_n3_anon_111_t88_masked_gfc_tra_90.gif"):
-                            selected_img.update({image: cdr_list[key]})
+                        if image.endswith("mpr_n4_anon_111_t88_masked_gfc_tra_90.gif") or image.endswith("mpr_n3_anon_111_t88_masked_gfc_tra_90.gif"):
+                            # image_path = os.path.join(img_folder_path, image)
+                            selected_img.update({image : [cdr_list[key], img_folder_path]})
                             
     return selected_img
