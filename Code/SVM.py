@@ -1,12 +1,15 @@
+from ImageSort import sortbycdr
+
 import os
 import numpy as np
 from sklearn.svm import SVC
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.metrics import classification_report, confusion_matrix, precision_score
 from sklearn.inspection import DecisionBoundaryDisplay
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, LabelEncoder
 from PIL import Image
 
+# Likely remove once folder sorting if figured out :)
 def load_images(folder):
     images = []
     labels = []
@@ -27,29 +30,26 @@ def load_images(folder):
                 print(f"Failed to process image {img_path}: {e}")
     return np.array(images), np.array(labels)
 
-folder_path = 'Test Processed Data'
-X, y = load_images(folder_path)
+folder_path = 'Temp Processed Data'
+data, label = load_images(folder_path)
 
-# Encode the labels if they are strings
-from sklearn.preprocessing import LabelEncoder
-le = LabelEncoder()
-y = le.fit_transform(y)
+# Encodes labels if string
+labelencoder = LabelEncoder()
+label = labelencoder.fit_transform(label)
 
-# Split the dataset into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+d_train, d_test, l_train, l_test = train_test_split(data, label, test_size = 0.2, random_state = 1)
 
-# Standardize the features
 scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
+d_train = scaler.fit_transform(d_train)
+d_test = scaler.fit_transform(d_test)
 
-# Train an SVM classifier
-svm = SVC(kernel='linear')
-svm.fit(X_train, y_train)
+# Testing SVC with linear kernel
+svm1 = SVC(kernel = 'linear')
+svm1.fit(d_train, l_train)
+l_pred1 = svm1.predict(d_test)
+print(confusion_matrix(l_test, l_pred1))
+print(classification_report(l_test, l_pred1))
 
-# Make predictions
-y_pred = svm.predict(X_test)
-
-# Evaluate the classifier
-print(confusion_matrix(y_test, y_pred))
-print(classification_report(y_test, y_pred))
+import numpy as np
+print("Class distribution in training data:", np.bincount(l_train))
+print("Class distribution in testing data:", np.bincount(l_test))
