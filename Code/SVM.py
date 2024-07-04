@@ -43,13 +43,33 @@ scaler = StandardScaler()
 d_train = scaler.fit_transform(d_train)
 d_test = scaler.fit_transform(d_test)
 
+print("Class distribution in training data:", np.bincount(l_train))
+print("Class distribution in testing data:", np.bincount(l_test))
+
 # Testing SVC with linear kernel
-svm1 = SVC(kernel = 'linear')
+svm1 = SVC(kernel = 'linear', C=C)
 svm1.fit(d_train, l_train)
 l_pred1 = svm1.predict(d_test)
 print(confusion_matrix(l_test, l_pred1))
 print(classification_report(l_test, l_pred1))
 
-import numpy as np
-print("Class distribution in training data:", np.bincount(l_train))
-print("Class distribution in testing data:", np.bincount(l_test))
+# Testing Linear SVC with linear kernel
+svm2 = LinearSVC(C=C, max_iter=1000)
+svm2.fit(d_train, l_train)
+l_pred2 = svm2.predict(d_test)
+print(confusion_matrix(l_test, l_pred2))
+print(classification_report(l_test, l_pred2))
+
+# Testing SVC with RBF kernel
+svm3 = SVC(kernel="rbf", gamma=0.7, C=C)
+svm3.fit(d_train, l_train)
+l_pred3 = svm3.predict(d_test)
+print(confusion_matrix(l_test, l_pred3))
+print(classification_report(l_test, l_pred3))
+
+# Testing SVC with polynomial
+svm4 = SVC(kernel="poly", degree=2, gamma="auto", C=C)
+svm4.fit(d_train, l_train)
+l_pred4 = svm4.predict(d_test)
+print(confusion_matrix(l_test, l_pred4))
+print(classification_report(l_test, l_pred4))
