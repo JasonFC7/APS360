@@ -1,18 +1,39 @@
 import os
+import pydicom
 
-root_dir = 'ADNI 3'
+def ImageSelect(data):
+    root_dir = data
 
-dicom_files = []
+    dicom_files = []
 
-for dirpath, dirnames, filenames in os.walk(root_dir):
-    for file in filenames:
-        if file.endswith('.dcm'):
-            dicom_files.append(os.path.join(dirpath, file))
+    for dirpath, dirnames, filenames in os.walk(root_dir):
+        counter = 0
+        breaker = 0
+        if len(filenames) > 1:
+            filenames = sorted(filenames, key=lambda x: int(x.split('_')[-3]))
+            for file in filenames:
+                counter += 1
+                index = int(len(filenames) / 5 * 3)
+                if file.endswith('.dcm') and (counter == index) and (breaker == 0):
+                    dicom_files.append(file)
+                    breaker += 1
 
-# Optional: Sort the DICOM files by a specific criterion (e.g., by instance number or filename)
-# Here we assume the filenames contain instance numbers that can be sorted
-dicom_files.sort()
+    return dicom_files
+        
 
-# Print out the collected DICOM file paths
-for dicom_file in dicom_files:
-    print(dicom_file)
+# root_dir = 'ADNI'
+
+# dicom_files = []
+
+# for dirpath, dirnames, filenames in os.walk(root_dir):
+#     counter = 0
+#     if len(filenames) > 1:
+#         filenames = sorted(filenames, key=lambda x: int(x.split('_')[-3]))
+#         for file in filenames:
+#             counter += 1
+#             index = len(filenames) / 3
+#             if file.endswith('.dcm') and (counter == index):
+#                 dicom_files.append(os.path.join(dirpath, file))
+
+# for filename in dicom_files:
+#     print(filename)
