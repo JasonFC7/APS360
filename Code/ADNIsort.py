@@ -38,13 +38,21 @@ num_1 = 0
 num_2 = 0
 num_3 = 0
 
-for patient in cdr1:
-    for filepath in slice_files:
-        if patient in filepath:
-            if filepath not in 'Final ADNI test set\cdr1':
-                 shutil.move(filepath, 'Final ADNI test set\cdr1')
-                 num_1 +=1
-            break
+print(len(cdr1), len(cdr2), len(cdr3))
+#print(slice_files)
+
+for patient in cdr3:
+    for slicef in slice_files:
+        if patient in slicef:
+            if slicef not in 'Final ADNI test set/cdr3':
+                shutil.move(slicef, 'Final ADNI test set/cdr3')
+                num_1 += 1
+            else:
+                "Slice already added."
+
+        # if patient in filepath:
+        #     if filepath not in 'Final ADNI test set/cdr1':
+        #          shutil.move(filepath, 'Final ADNI test set/cdr1')
 
 print(num_1)
 
