@@ -4,7 +4,6 @@ from ADNIimageSelection import ImageSelect
 from ADNIsliceSelection import finalSlices
 import os
 import shutil
-from pathlib import Path
 
 dicom_files = ImageSelect('ADNI')
 slice_files = []
@@ -39,29 +38,44 @@ num_1 = 0
 num_2 = 0
 num_3 = 0
 
-print(len(cdr1), len(cdr2), len(cdr3))
-print(cdr3)
+# Not sure... but everytime this is run, the file names change slightly... so it adds the image again... so please delete extras...
+
+for patient in cdr1:
+    for slicef in slice_files:
+        if patient in slicef:
+            fname = os.path.basename(slicef)
+            if os.path.isfile('Final ADNI test set/cdr1/{}'.format(fname)):
+                None
+            else:
+                shutil.move(slicef, 'Final ADNI test set/cdr1')
+                num_1 += 1
+                break
+            
+for patient in cdr2:
+    for slicef in slice_files:
+        if patient in slicef:
+            fname = os.path.basename(slicef)
+            if os.path.isfile('Final ADNI test set/cdr2/{}'.format(fname)):
+                None
+            else:
+                shutil.move(slicef, 'Final ADNI test set/cdr2')
+                num_2 += 1
+                break
 
 for patient in cdr3:
     for slicef in slice_files:
         if patient in slicef:
-            if os.path.basename(slicef) in Path('Final ADNI test set/cdr3'):
-                shutil.move(slicef, 'Final ADNI test set/cdr3')
-                num_1 += 1
-                break
+            fname = os.path.basename(slicef)
+            if os.path.isfile('Final ADNI test set/cdr3/{}'.format(fname)):
+                None
             else:
-                print("Slice already sorted.")
-#             if slicef not in 'Final ADNI test set/cdr3':
-#                 shutil.move(slicef, 'Final ADNI test set/cdr3')
-#                 num_1 += 1
-#             else:
-#                 "Slice already added."
-
-        # if patient in filepath:
-        #     if filepath not in 'Final ADNI test set/cdr1':
-        #          shutil.move(filepath, 'Final ADNI test set/cdr1')
-
-print(num_1)
+                shutil.move(slicef, 'Final ADNI test set/cdr3')
+                num_3 += 1
+                break
+            
+print("Images in cdr1:", num_1)
+print("Images in cdr2:", num_2)
+print("Images in cdr3:", num_3)
 
 # for filepath in slice_files:
 #     print(filepath)
