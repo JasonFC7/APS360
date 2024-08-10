@@ -4,6 +4,7 @@ from ADNIimageSelection import ImageSelect
 from ADNIsliceSelection import finalSlices
 import os
 import shutil
+from pathlib import Path
 
 dicom_files = ImageSelect('ADNI')
 slice_files = []
@@ -27,11 +28,11 @@ with open(filename, 'r') as csvfile:
         rows.append(row)
         
 for row in rows:
-    if row[3] == '0.0':
+    if row[3] == '0.0' and row[4] != 'MP-RAGE REPEAT':
         cdr1.append(row[0])
-    elif row[3] == '0.5':
+    elif row[3] == '0.5' and row[4] != 'MP-RAGE REPEAT':
         cdr2.append(row[0])
-    elif row[3] == '1.0':
+    elif row[3] == '1.0' and row[4] != 'MP-RAGE REPEAT':
         cdr3.append(row[0])
 
 num_1 = 0
@@ -39,16 +40,22 @@ num_2 = 0
 num_3 = 0
 
 print(len(cdr1), len(cdr2), len(cdr3))
-#print(slice_files)
+print(cdr3)
 
 for patient in cdr3:
     for slicef in slice_files:
         if patient in slicef:
-            if slicef not in 'Final ADNI test set/cdr3':
+            if os.path.basename(slicef) in Path('Final ADNI test set/cdr3'):
                 shutil.move(slicef, 'Final ADNI test set/cdr3')
                 num_1 += 1
+                break
             else:
-                "Slice already added."
+                print("Slice already sorted.")
+#             if slicef not in 'Final ADNI test set/cdr3':
+#                 shutil.move(slicef, 'Final ADNI test set/cdr3')
+#                 num_1 += 1
+#             else:
+#                 "Slice already added."
 
         # if patient in filepath:
         #     if filepath not in 'Final ADNI test set/cdr1':
