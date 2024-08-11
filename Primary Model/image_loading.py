@@ -36,10 +36,10 @@ class GifImageFolder(Dataset):
         for class_name in sorted(os.listdir(root)):
             class_dir = os.path.join(root, class_name)
             if os.path.isdir(class_dir):
-                for root, _, fnames in sorted(os.walk(class_dir)):
+                for root_2, _, fnames in sorted(os.walk(class_dir)):
                     for fname in sorted(fnames):
                         if fname.endswith('.gif'):
-                            path = os.path.join(root, fname)
+                            path = os.path.join(root_2, fname)
                             item = (path, class_to_idx[class_name])
                             samples.append(item)
         return samples
