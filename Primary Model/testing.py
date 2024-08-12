@@ -2,7 +2,7 @@ from model import prim_model
 from image_loading import image_loader
 from training import train_model, plot_training_curve, get_model_name
 
-paths = ["Processed Images", "Validation Set", "Final Test Set"]
+paths = ["Processed Data", "Validation Set", "Final Testing Set"]
 train_loader, val_loader, test_loader = image_loader(paths)
 
 input_size = [176, 208]
