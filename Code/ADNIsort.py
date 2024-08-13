@@ -5,16 +5,16 @@ from ADNIsliceSelection import finalSlices
 import os
 import shutil
 
-dicom_files = ImageSelect('ADNI')
+dicom_files = ImageSelect('ADNI 3')
 slice_files = []
 
-for dirpath, dirnames, filenames in os.walk('ADNI'):
+for dirpath, dirnames, filenames in os.walk('ADNI 3'):
     for filename in filenames:
         if filename in dicom_files:   
             filepath = os.path.join(dirpath, filename)
             slice_files.append(filepath)
                 
-filename = "idaSearch_7_31_2024.csv"
+filename = "Code/idaSearch_8_13_2024 sag.csv"
 
 cols, rows = [], []
 

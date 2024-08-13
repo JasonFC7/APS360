@@ -13,7 +13,7 @@ def ImageSelect(data):
             filenames = sorted(filenames, key=lambda x: int(x.split('_')[-3]))
             for file in filenames:
                 counter += 1
-                index = int(len(filenames) / 5 * 3)
+                index = int(len(filenames) * 0.55)
                 if file.endswith('.dcm') and (counter == index) and (breaker == 0):
                     dicom_files.append(file)
                     breaker += 1
