@@ -21,7 +21,7 @@ def ImageSelect(data):
     return dicom_files
         
 
-# root_dir = 'ADNI 4'
+# root_dir = 'ADNI'
 
 # dicom_files = []
 

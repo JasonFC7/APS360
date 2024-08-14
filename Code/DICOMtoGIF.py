@@ -3,7 +3,7 @@ from PIL import Image
 import numpy as np
 import os
 
-cdr1_path = 'Final test ADNI sag (dcm)/cdr3'
+cdr1_path = 'Final ADNI test set (DCM)/cdr3'
 
 for root, dirs, files in os.walk(cdr1_path):
     for file in files:                
