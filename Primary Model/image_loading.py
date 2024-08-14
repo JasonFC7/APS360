@@ -50,8 +50,8 @@ class GifImageFolder(Dataset):
     def __getitem__(self, index):
         path, class_idx = self.samples[index]
         with Image.open(path) as img:
-            img = img.convert('RGB')  # Convert GIF to RGB
+            img = img.convert('RGB') 
             if self.transform:
                 img = self.transform(img)
-            label = torch.tensor(class_idx)  # Convert label to tensor
+            label = torch.tensor(class_idx)
         return img, label
