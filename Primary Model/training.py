@@ -48,10 +48,10 @@ def train_model(model, train_loader, val_loader, batch_size = 16, learning_rate 
             total_samples += labels.size(0)
 
         train_acc[epoch], train_err[epoch], train_loss[epoch] = evaluate(model, train_loader, criterion, device)
-        val_acc[epoch], val_acc[epoch], val_loss[epoch] = evaluate(model, val_loader, criterion, device)
+        val_acc[epoch], val_err[epoch], val_loss[epoch] = evaluate(model, val_loader, criterion, device)
         print(("Epoch {}: ").format(epoch))
-        print(("Train acc: {} | " + "Train err: {} | " + "Train loss: {}").format(train_acc[epoch], train_err[epoch], train_err[epoch]))
-        print(("Val acc: {} | " + "Val err: {} | " + "Val loss: {}\n").format(val_acc[epoch], val_err[epoch], val_err[epoch]))
+        print(("Train acc: {} | " + "Train err: {} | " + "Train loss: {}").format(train_acc[epoch], train_err[epoch], train_loss[epoch]))
+        print(("Val acc: {} | " + "Val err: {} | " + "Val loss: {}\n").format(val_acc[epoch], val_err[epoch], val_loss[epoch]))
 
         model_path = get_model_name(model.name, batch_size, learning_rate, epoch)
         torch.save(model.state_dict(), model_path)
@@ -61,7 +61,6 @@ def train_model(model, train_loader, val_loader, batch_size = 16, learning_rate 
     elapsed_time = end_time - start_time
     print("Total time elapsed: {:.2f} seconds".format(elapsed_time))
     
-    print(model_path)
     np.savetxt("{}_train_acc.csv".format(model_path), train_acc)
     np.savetxt("{}_train_err.csv".format(model_path), train_err)
     np.savetxt("{}_train_loss.csv".format(model_path), train_loss)
@@ -98,6 +97,22 @@ def evaluate(model, data_loader, criterion, device):
     model.train()
     return accuracy, err, loss
 
+def get_accuracy(model, data_loader, device):
+    model.eval()
+    correct = 0
+    total = 0
+
+    with torch.no_grad():
+        for inputs, labels in data_loader:
+            inputs, labels = inputs.to(device), labels.to(device)
+            output = model(inputs)
+            pred = output.max(1, keepdim = True)[1]
+            correct += pred.eq(labels.view_as(pred)).sum().item()
+            total += labels.size(0)
+
+    accuracy = correct / total
+    return accuracy
+
 def plot_training_curve(path, condition = "Normal"):
     train_acc = np.loadtxt("{}_train_acc.csv".format(path))
     train_err = np.loadtxt("{}_train_err.csv".format(path))
@@ -105,7 +120,6 @@ def plot_training_curve(path, condition = "Normal"):
     val_acc = np.loadtxt("{}_val_acc.csv".format(path))
     val_err = np.loadtxt("{}_val_err.csv".format(path))
     val_loss = np.loadtxt("{}_val_loss.csv".format(path))
-    
     n = len(train_err)
     
     plt.title("Train vs Validation Accuracy ({})".format(condition))
